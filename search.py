@@ -21,5 +21,4 @@ def search(target, radius, exptime, cadence, mission,
         if len(results) == 0:
             raise ValueError(f"No light curves found for target: {target}")
 
-        print(results)
         return results
