@@ -1,7 +1,7 @@
 Dependencies:
 Numpy
 Matplotlib
-Tkinter
+Tkinter (typically comes with Python)
 Lightkurve
 
 Description:
