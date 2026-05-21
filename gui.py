@@ -2,11 +2,15 @@ import tkinter as tk
 from tkinter import ttk
 from search import search
 from theme import *
-from state import state
+from state import state, download
 
 def launch_app():
 
     root = tk.Tk()
+
+    scrollbar = ttk.Scrollbar(root, orient='vertical')
+    scrollbar.pack(side='right', fill='y')
+
 
     notebook = ttk.Notebook(root)
     notebook.pack(expand=True, fill="both")
@@ -113,8 +117,8 @@ def launch_app():
 
     limit_entry = tk.Entry(search_tab, bg=MAIN1, fg=TEXT1, width=20)
     limit_entry.place(relx=0.80, rely=0.45, anchor="w")
+    
     #TREEVIEW
-
     columns = ('#', 'Mission', 'Year', 'Author',
                'Exptime', 'Target Name', 'Distance')
 
@@ -129,7 +133,6 @@ def launch_app():
     tree.place(relx=0.5, rely=0.75, anchor=tk.CENTER)
 
     #SHOW RESULTS
-
     def show_results():
 
         # clear old rows
@@ -200,5 +203,22 @@ def launch_app():
     )
 
     search_btn.place(relx=0.475, rely=0.45, anchor=tk.CENTER)
+
+
+    def download():
+        lc = state["search_results"][0].download() #it should download the first one
+        return download
+
+    #DOWNLOAD BUTTON
+    download_btn = tk.Button(
+        search_tab,
+        text="Download",
+        width=25,
+        bg=MAIN2,
+        fg=TEXT1,
+        command=download
+    )
+
+    download_btn.place(relx=0.475, rely=0.97, anchor=tk.CENTER)
 
     root.mainloop()
